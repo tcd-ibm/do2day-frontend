@@ -20,7 +20,24 @@ describe("Testing App", () => {
         screen.getByRole("button", { name: /➕/i })
       ).toBeInTheDocument();
 
-
+      
     });
+
+    const request = require('supertest');       //already installed with npm i or not?
+    const app = require("../client");           //The folder where the app is maybe?
+
+    describe('Test handleUpdate', () => {
+      it('tests endpoints', async() => {
+        const response = await request(app).handleUpdate("");
+        expect(response.statusCode).toBe("arbitrary number")    //Does our API return status codes?
+      })
+    })
+
+    describe('Test handleSubmit', () => {
+      it('tests endpoints', async() => {
+        const response = await request(app).handleUpdate("");
+        expect(response.statusCode).toBe("arbitrary number")    //Does our API return status codes?
+      })
+    })
 
 });
