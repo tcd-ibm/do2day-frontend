@@ -22,22 +22,37 @@ describe("Testing App", () => {
 
       
     });
-
-    const request = require('supertest');       //already installed with npm i or not?
-    const app = require("../client");           //The folder where the app is maybe?
-
-    describe('Test handleUpdate', () => {
-      it('tests endpoints', async() => {
-        const response = await request(app).handleUpdate("");
-        expect(response.statusCode).toBe("arbitrary number")    //Does our API return status codes?
-      })
-    })
-
-    describe('Test handleSubmit', () => {
-      it('tests endpoints', async() => {
-        const response = await request(app).handleUpdate("");
-        expect(response.statusCode).toBe("arbitrary number")    //Does our API return status codes?
-      })
-    })
-
 });
+
+const request = require('supertest');                          //already installed with npm i or not?
+// const app = require("../App");                              //The folder where the app is maybe?
+
+// describe('Test handleUpdate', () => {
+//   it('tests endpoints', async() => {
+//     const response = await request(app).handleUpdate("");
+//     expect(response.statusCode).toBe("arbitrary number")    //Does our API return status codes?
+//   })
+// })
+
+// describe('Test handleSubmit', () => {
+//   it('tests endpoints', async() => {
+//     const response = await request(app).handleSubmit("");   //Is request(app) correct?
+//     expect(response.statusCode).toBe("arbitrary number")    //Does our API return status codes?
+//   })
+// })
+
+// describe('Test handleDelete', () => {
+//   it('tests endpoints', async() => {
+//     const response = await request(app).handleDelete("");   //Is request(app) correct?
+//     expect(response.statusCode).toBe("arbitrary number")    //Does our API return status codes?
+//   })
+// })
+
+// describe('Test handleChange', () => {
+//   it('tests endpoints', async() => {
+//     const response = await request(app).handleDelete("");   //Is request(app) correct?
+//     expect(response.statusCode).toBe("arbitrary number")    //Does our API return status codes?
+//   })
+// })
+
+
