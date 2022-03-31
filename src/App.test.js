@@ -4,7 +4,6 @@ import App from './App';
 import { addTask, getTasks, updateTask, deleteTask } from "./services/taskServices";
 
 
-
 jest.mock("./services/taskServices");
 
 test("Title is being displayed", () => {
@@ -27,17 +26,6 @@ test("Get tasks is being called", () => {
   expect(getTasks).toHaveBeenCalledTimes(1);
   // highlight-end
 });
-
-test("Create new todo", () => {
-  render(<App />);
-  // highlight-start
-  expect(getTasks).toHaveBeenCalledTimes(1);
-  // highlight-end
-});
-
-
-
-
 
 
 // describe("Testing App", () => {
