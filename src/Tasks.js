@@ -11,7 +11,7 @@ class Tasks extends Component {
         try {
             const { data } = await getTasks();
             this.setState({ tasks: data });
-        } 
+        }
         catch (error) {
             console.log(error);
         }
@@ -24,7 +24,7 @@ class Tasks extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         const originalTasks = this.state.tasks;
-        
+
         try {
             const { data } = await addTask({ task: this.state.currentTask });
             const tasks = originalTasks;
@@ -57,7 +57,7 @@ class Tasks extends Component {
     handleDelete = async (currentTask) => {
 
         const originalTasks = this.state.tasks;
-        
+
         try {
             const tasks = originalTasks.filter(
                 (task) => task._id !== currentTask

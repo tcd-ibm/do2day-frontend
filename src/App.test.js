@@ -1,28 +1,65 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import App from './App';
+import { addTask, getTasks, updateTask, deleteTask } from "./services/taskServices";
 
 
-describe("Testing App", () => {
 
-    it("renders basic elements", () => {
-      render(<App />);
+jest.mock("./services/taskServices");
 
-      expect(
-        screen.getByRole('heading', {level: 1})
-      ).toHaveTextContent("Do2Day");
-
-      expect(
-        screen.getByRole("textbox")
-      ).toBeInTheDocument();
-
-      expect(
-        screen.getByRole("button", { name: /➕/i })
-      ).toBeInTheDocument();
-
-      
-    });
+test("Title is being displayed", () => {
+  render(<App />);
+  expect(screen.getByRole('heading', {level:1})).toBeInTheDocument();
+  // highlight-star
+  // highlight-end
 });
+
+test("New task input is being displayed", () => {
+  render(<App />);
+  expect(screen.getByRole("textbox")).toBeInTheDocument();
+  // highlight-star
+  // highlight-end
+});
+
+test("Get tasks is being called", () => {
+  render(<App />);
+  // highlight-start
+  expect(getTasks).toHaveBeenCalledTimes(1);
+  // highlight-end
+});
+
+test("Create new todo", () => {
+  render(<App />);
+  // highlight-start
+  expect(getTasks).toHaveBeenCalledTimes(1);
+  // highlight-end
+});
+
+
+
+
+
+
+// describe("Testing App", () => {
+//
+//     it("renders basic elements", () => {
+//       render(<App />);
+//
+//       expect(
+//         screen.getByRole('heading', {level: 1})
+//       ).toHaveTextContent("Do2Day");
+//
+//       expect(
+//         screen.getByRole("textbox")
+//       ).toBeInTheDocument();
+//
+//       expect(
+//         screen.getByRole("button", { name: /➕/i })
+//       ).toBeInTheDocument();
+//
+//
+//     });
+// });
 
 const request = require('supertest');                          //already installed with npm i or not?
 // const app = require("../App");                              //The folder where the app is maybe?
@@ -54,5 +91,3 @@ const request = require('supertest');                          //already install
 //     expect(response.statusCode).toBe("arbitrary number")    //Does our API return status codes?
 //   })
 // })
-
-
