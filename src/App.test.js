@@ -6,9 +6,9 @@ import { addTask, getTasks, updateTask, deleteTask } from "./services/taskServic
 
 jest.mock("./services/taskServices");
 
-test("Title is being displayed", () => {
+test("Logo is being displayed", () => {
   render(<App />);
-  expect(screen.getByRole('heading', {level:1})).toBeInTheDocument();
+  expect(screen.getByTestId("logo")).toBeInTheDocument();
   // highlight-star
   // highlight-end
 });
