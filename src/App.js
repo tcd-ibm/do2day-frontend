@@ -14,11 +14,11 @@ class App extends Tasks {
       <div className="App flex">
         <div className="appContainer">
 
-          <div className="title">Do2Day</div>
-          
+          <h1 className="title">Do2Day</h1>
+
           <form onSubmit={this.handleSubmit} className="flex" style={{ margin: "15px 0" }}>
 
-            <input type="text" placeholder="New task..." style={{ width: "75%" }} value={this.state.currentTask} onChange={this.handleChange} required="true"/>
+            <input type="text" placeholder="New task..." style={{ width: "75%" }} value={this.state.currentTask} onChange={this.handleChange} required={true}/>
             <button type="submit" style={{ height: "30px" }}> ➕ </button>
 
           </form>
@@ -41,7 +41,7 @@ class App extends Tasks {
           </div>
         </div>
       </div>
-      
+
 
     );
   }

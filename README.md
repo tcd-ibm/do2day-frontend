@@ -1,2 +1,2 @@
-# Do2Day Frontend
-
+# Basic version
+Updating README

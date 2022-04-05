@@ -3,6 +3,13 @@
   height: 100;
 }
 
+body{
+  background-image: linear-gradient(120deg,#800080, #0000ff  ) ;
+  color: white;
+  font-family: 'permanent marker';
+  min-height: 100vh;
+}
+
 .title {
   font-size: 45px;
   font-family: "Monaco", monospace;
@@ -21,7 +28,7 @@
 .taskContainer {
   margin: 10px 0;
   filter: drop-shadow(1px 1px 2px grey);
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 25px;
   cursor: pointer;
 }
@@ -38,6 +45,7 @@
 }
 
 .task {
+  color : black;
   flex-grow: 1;
   margin-left: 10px;
   margin-top: 8px;
