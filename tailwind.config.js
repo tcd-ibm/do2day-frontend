@@ -3,9 +3,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'accent': "rgb(111, 120, 244)",
+        'accent': "rgb(89, 110, 235)",
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    // ...
+  ],
 }
