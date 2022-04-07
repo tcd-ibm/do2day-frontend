@@ -79,9 +79,9 @@ jobs:
             namespace: ${{ env.OPENSHIFT_NAMESPACE }}
             port: ${{ env.APP_PORT }}
 
-		- name: Set MongoDB URI 
-		  run: |
-          	oc set env deployment.apps/frontend PORT=8080
+        - name: Set React App port 
+          run: |
+            oc set env deployment.apps/frontend PORT=8080
         
 		- name: Print application URL
           env:
