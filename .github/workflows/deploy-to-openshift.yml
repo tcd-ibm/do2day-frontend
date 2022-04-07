@@ -21,37 +21,73 @@ jobs:
         SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
  
       steps:
-      - name: Install oc
-        uses: redhat-actions/openshift-tools-installer@v1
-        with:
-          oc: 4
+        - name: Check for required secrets
+          uses: actions/github-script@v4
+          with:
+            script: |
+              const secrets = 
+              {
+                PERSONAL_ACCESS_TOKEN: `${{ secrets.PERSONAL_ACCESS_TOKEN }}`,
+                ORGANISATION_NAME: `${{ secrets.ORGANISATION_NAME }}`,
+                PROJECT_NAME: `${{ secrets.PROJECT_NAME }}`,
+                COLUMN_NAME: `${{ secrets.COLUMN_NAME }}`,
+                TEAM_NAME: `${{ secrets.TEAM_NAME }}`,
+              };
+
+              const missingSecrets = Object.entries(secrets).filter(([ name, value ]) => 
+              {
+                if(value.length === 0) 
+                {
+                  core.error(`Secret "${name}" is not set`);
+                }
+                else
+                {
+                  core.info(`✔️ Secret "${name}" is set`);
+                }
+              
+                return;
+              });
+
+              if(missingSecrets.length > 0) 
+              {
+                core.setFailed(`❌ At least one required secret is not set in the repository. \n`);
+              }
+              else 
+              {
+                core.info(`✅ All the required secrets are set`);
+              }
+       
+        - name: Install oc
+          uses: redhat-actions/openshift-tools-installer@v1
+          with:
+            oc: 4
  
-      - name: Log in to OpenShift
-        uses: redhat-actions/oc-login@v1
-        with:
-          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
-          openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
-          insecure_skip_tls_verify: true
-          namespace: ${{ env.OPENSHIFT_NAMESPACE }}
+        - name: Log in to OpenShift
+          uses: redhat-actions/oc-login@v1
+          with:
+            openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
+            openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
+            insecure_skip_tls_verify: true
+            namespace: ${{ env.OPENSHIFT_NAMESPACE }}
 
-      - name: Create and expose app
-        id: deploy-and-expose
-        uses: redhat-actions/oc-new-app@v1
-        with:
-          app_name: ${{ env.APP_NAME }}
-          image: quay.io/do2day/frontend
-          namespace: ${{ env.OPENSHIFT_NAMESPACE }}
-          port: ${{ env.APP_PORT }}
+        - name: Create and expose app
+          id: deploy-and-expose
+          uses: redhat-actions/oc-new-app@v1
+          with:
+            app_name: ${{ env.APP_NAME }}
+            image: quay.io/do2day/frontend
+            namespace: ${{ env.OPENSHIFT_NAMESPACE }}
+            port: ${{ env.APP_PORT }}
 
-      - name: Print application URL
-        env:
-          ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
-          SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
-        run: |
-          [[ -n ${{ env.ROUTE }} ]] || (echo "Determining application route failed in previous step"; exit 1)
-          echo
-          echo "======================== Your application is available at: ========================"
-          echo ${{ env.ROUTE }}
-          echo "==================================================================================="
-          echo
-          echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""# Î#
+        - name: Print application URL
+          env:
+            ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
+            SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
+          run: |
+            [[ -n ${{ env.ROUTE }} ]] || (echo "Determining application route failed in previous step"; exit 1)
+            echo
+            echo "======================== Your application is available at: ========================"
+            echo ${{ env.ROUTE }}
+            echo "==================================================================================="
+            echo
+            echo "Your app can be taken down with: \"oc delete all --selector='${{ env.SELECTOR }}'\""# Î#
