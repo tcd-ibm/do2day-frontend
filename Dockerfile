@@ -23,7 +23,7 @@ RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
 COPY . ./
 
 # Expose port
-EXPOSE 8080
+EXPOSE 3000
 
 # Start the application
 CMD ["npm", "start"]
