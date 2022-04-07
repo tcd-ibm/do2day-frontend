@@ -1,5 +1,6 @@
 # Use node alpine base image
-FROM node:alpine
+#FROM node:alpine
+FROM node:latest
 
 # Create app directory
 WORKDIR /app
