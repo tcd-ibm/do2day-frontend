@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiUrl = "http://localhost:8080/api/tasks";
+const apiUrl = "http://backend-briantwhelan-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com/api/tasks";
 
 // functions to call api
 
