@@ -3,7 +3,7 @@ name: Deploy to OpenShift cluster
 env:
   OPENSHIFT_NAMESPACE: ""
   APP_NAME: "frontend"
-  APP_PORT: 3000
+  APP_PORT: 8080
 
 on:
   workflow_run:
@@ -79,7 +79,11 @@ jobs:
             namespace: ${{ env.OPENSHIFT_NAMESPACE }}
             port: ${{ env.APP_PORT }}
 
-        - name: Print application URL
+		- name: Set MongoDB URI 
+		  run: |
+          	oc set env deployment.apps/frontend PORT=8080
+        
+		- name: Print application URL
           env:
             ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
             SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
