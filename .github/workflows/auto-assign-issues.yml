@@ -56,14 +56,13 @@ jobs:
               core.info(`✅ All the required secrets are set`);
             }
             
-      - name: Create or Update Project Card
+      - name: Create or update project card
         uses: peter-evans/create-or-update-project-card@v2
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           project-location: ${{ secrets.ORGANISATION_NAME }}
           project-name: ${{ secrets.PROJECT_NAME }}
           column-name: ${{ secrets.COLUMN_NAME }}
-          issue-number: ${{ github.event.number }}
           
       - name: Auto-assign issue to team
         uses: pozil/auto-assign-issue@v1.4.0
