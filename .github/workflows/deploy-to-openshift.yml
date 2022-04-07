@@ -3,7 +3,7 @@ name: Deploy to OpenShift cluster
 env:
   OPENSHIFT_NAMESPACE: ""
   APP_NAME: "frontend"
-  APP_PORT: 3000
+  APP_PORT: 8080
 
 on:
   workflow_run:
