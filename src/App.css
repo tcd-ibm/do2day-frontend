@@ -1,20 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply font-sans py-2 px-4 rounded;
+    
+  }
+
+  .delbtn {
+    @apply absolute right-3 font-sans rounded;
+  }
+  
+  .checkbox {
+    @apply ml-4;
+  }
+
+  .task {
+    @apply text-black font-sans ml-2.5 mt-0.5 mb-0.5;
+  }
+  
+  .completed {
+    @apply line-through;
+  }
+  
+  .shadow {
+    filter: drop-shadow(1px 1px 2px #413b5a);
+  }
+
+}
+
 .App {
   width: 100;
   height: 100;
 }
 
 body{
-  background-image: linear-gradient(120deg,#800080, #0000ff  ) ;
+  background-color: #bcc4ff;
   color: white;
   font-family: 'permanent marker';
   min-height: 100vh;
 }
 
 .title {
-  font-size: 45px;
-  font-family: "Monaco", monospace;
-  font-weight: bold;
-  text-align: center;
+  padding-top: 10px;
 }
 
 .appContainer {
@@ -27,10 +56,25 @@ body{
 
 .taskContainer {
   margin: 10px 0;
-  filter: drop-shadow(1px 1px 2px grey);
+  padding-top: 4px;
+  padding-bottom: 4px;
+  filter: drop-shadow(1px 1px 2px #413b5a);
   background-color: #ffffff;
   border-radius: 25px;
   cursor: pointer;
+}
+
+.centerSVG {
+  display: block;
+  margin-top: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  
+}
+
+.rounded-xxl {
+  border-radius: 4rem/* 12px */;
 }
 
 .flex {
@@ -39,31 +83,19 @@ body{
   align-items: top;
 }
 
+.fade-in {
+  animation: fadein 1s linear;
+}
+
+@keyframes fadein {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
 .taskflex {
   display: flex;
   align-items: center;
 }
-
-.task {
-  color : black;
-  flex-grow: 1;
-  margin-left: 10px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.completed {
-  text-decoration: line-through;
-}
-
-.btn {
-  margin-right: 10px;
-}
-
-.checkbox {
-  margin-left: 15px;
-}
-
 
 .App-logo {
   height: 40vmin;
