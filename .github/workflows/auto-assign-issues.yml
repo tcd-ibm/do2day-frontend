@@ -63,7 +63,7 @@ jobs:
           project-location: ${{ secrets.ORGANISATION_NAME }}
           project-name: ${{ secrets.PROJECT_NAME }}
           column-name: ${{ secrets.COLUMN_NAME }}
-          issue-number: 1
+          issue-number: ${{ github.event.number }}
           
       - name: Auto-assign issue to team
         uses: pozil/auto-assign-issue@v1.4.0
