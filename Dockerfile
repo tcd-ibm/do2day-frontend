@@ -10,8 +10,10 @@ ENV PATH /app/node_modules/.bin:$PATH
 # Copy package.json and package-lock.json into container
 COPY package*.json ./
 
+RUN npm config set unsafe-perm true
+
 # Install node dependencies
-RUN npm install
+RUN npm install --force
 
 # Copy current directory into container
 COPY . ./
