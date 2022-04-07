@@ -15,7 +15,7 @@ RUN npm config set unsafe-perm true
 # Install node dependencies
 RUN npm install --force
 
-RUN chown -R node /app/node_modules
+RUN chown -R node:node /app/node_modules
 
 # Copy current directory into container
 COPY . ./
