@@ -1,4 +1,4 @@
-name: Perform Static Analysis
+name: Perform static analysis
 
 on:
   push:

@@ -9,7 +9,7 @@
 # 4. COLUMN_NAME - the name of the column into which cards should be created
 # 5. TEAM_NAME - the name of the team from which two members will be assigned to the issue
 
-name: Auto-assign Issues
+name: Auto-assign issues
 
 on:
   issues:
@@ -59,16 +59,16 @@ jobs:
       - name: Create or Update Project Card
         uses: peter-evans/create-or-update-project-card@v2
         with:
-          token: ${{secrets.PAT}}
-          project-location: ${{secrets.ORGANISATION_NAME}}
-          project-name: ${{secrets.PROJECT_NAME}}
-          column-name: ${{secrets.COLUMN_NAME}}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          project-location: ${{ secrets.ORGANISATION_NAME }}
+          project-name: ${{ secrets.PROJECT_NAME }}
+          column-name: ${{ secrets.COLUMN_NAME }}
           issue-number: 1
           
       - name: Auto-assign issue to team
         uses: pozil/auto-assign-issue@v1.4.0
         with:
-          repo-token: ${{secrets.PERSONAL_ACCESS_TOKEN}}
+          repo-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           teams: ${{ secrets.TEAM_NAME }}
           numOfAssignee: 2
         
