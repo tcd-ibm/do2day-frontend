@@ -82,8 +82,8 @@ jobs:
         - name: Set React App port 
           run: |
             oc set env deployment.apps/frontend PORT=8080
-        
-		- name: Print application URL
+
+        - name: Print application URL
           env:
             ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
             SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
