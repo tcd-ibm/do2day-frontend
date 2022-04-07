@@ -1,6 +1,5 @@
-# Use node alpine base image
-#FROM node:alpine
-FROM node:latest
+# Use secure node base image
+FROM node:current-stretch-slim
 
 # Create app directory
 WORKDIR /app
@@ -18,7 +17,7 @@ RUN npm install
 COPY . ./
 
 # Expose port
-EXPOSE 3000
+EXPOSE 8080
 
 # Start the application
 CMD ["npm", "start"]
